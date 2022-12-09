@@ -94,15 +94,20 @@ jobs:
         
     - name: Upload OpenWrt Firmware to Release
       id: release
-      uses: ncipollo/release-action@main
+      uses: ncipollo/release-action@v1
+      if: env.PACKAGED_STATUS == 'success' && env.UPLOAD_RELEASE == 'true' && !cancelled()
       with:
-        tag: openwrt_armvirt_v8_${{ env.PACKAGED_OUTPUTDATE }}
-        artifacts: ${{ env.PACKAGED_OUTPUTPATH }}/*
+        name: R${{ env.DATE }} for ${{ env.FILE_NAME }}
         allowUpdates: true
+        removeArtifacts: true
+        tag: ${{ env.FILE_NAME }}
+        commit: main
         token: ${{ secrets.GH_TOKEN }}
+        artifacts: ${{ env.PACKAGED_OUTPUTPATH }}/*
         body: |
           - 默认IP：192.168.1.1 默认密码：password (WiFi密码同）
           - 当前使用版本:【编译前的最后一次➦[主源码](https://github.com/coolsnowwolf/lede)更新记录】
+          ${{ env.useVersionInfo }}
 
     - name: Delete workflow runs
       uses: GitRML/delete-workflow-runs@main
