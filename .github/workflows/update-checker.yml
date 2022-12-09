@@ -17,8 +17,8 @@ env:
 
 on:
   workflow_dispatch:
-#  schedule:
-#    - cron: 0 */18 * * *
+  schedule:
+    - cron: 18 18 * * *
 
 jobs:
   check:
@@ -30,7 +30,8 @@ jobs:
       id: getHash
       run: |
         git clone --depth 1 $REPO_URL -b $REPO_BRANCH .
-        echo "::set-output name=commitHash::$(git rev-parse HEAD)"
+        #echo "::set-output name=commitHash::$(git rev-parse HEAD)"
+        echo "commitHash=$(git rev-parse HEAD)" >> $GITHUB_OUTPUT
 
     - name: Compare Commit Hash
       id: cacheHash
