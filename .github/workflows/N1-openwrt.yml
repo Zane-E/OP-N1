@@ -28,7 +28,7 @@ env:
   UPLOAD_RELEASE: true
   RECENT_LASTEST: 30
   TZ: Asia/Shanghai
-  FILE_NAME: ARMv8
+  FILE_NAME: N1
   PRODUCT_NAME: ARMv8
 
 jobs:
