@@ -76,7 +76,7 @@ jobs:
         KERNEL_REPO_URL: https://github.com/breakings/OpenWrt/tree/main/opt
         KERNEL_VERSION_NAME: 5.4.225_5.10.156_5.15.82_6.0.12
         GH_TOKEN: ${{ secrets.GH_TOKEN }}
-        OPENWRT_VER: R22.12.1
+        # OPENWRT_VER: R22.12.1
         KERNEL_AUTO_LATEST: true
         GZIP_IMGS: .gz
 
